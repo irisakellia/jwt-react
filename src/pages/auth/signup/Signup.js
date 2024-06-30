@@ -49,12 +49,12 @@ const Button = styled.button`
 `;
 
 const Signup = () => {
-
   const navigate = useNavigate();
   const [data, setData] = useState({
     name: '',
     email: '',
-    password:'',
+    password: '',
+    role:'',
   });
 
   const handleInputChange = (event) => {
@@ -65,30 +65,28 @@ const Signup = () => {
     });
   };
 
-  const handleSubmit = async(e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-   
-    try {
-      const response = await fetch("http://localhost:5001/user/register",{
-        method:"POST",
-        headers:{
-          "content-Type":"applicaion/json"
-        },
-        body:JSON.stringify(setData)
-      })
 
-      const result = await  response.json();
+    try {
+      const response = await fetch("http://localhost:5001/user/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
       console.log(result);
       navigate("/login");
-
     } catch (error) {
-      console.error(error.message)
-    
+      console.error(error.message);
     }
   };
 
   return (
-   
+    <SignupContainer>
       <Form onSubmit={handleSubmit}>
         <Title>Signup</Title>
         <Input
@@ -112,9 +110,16 @@ const Signup = () => {
           value={data.password}
           onChange={handleInputChange}
         />
+        <Input
+          type="text"
+          placeholder="role"
+          name="role"
+          value={data.role}
+          onChange={handleInputChange}
+        />
         <Button type="submit">Sign Up</Button>
       </Form>
-   
+    </SignupContainer>
   );
 };
 
