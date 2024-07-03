@@ -8,7 +8,7 @@ const Header = () => {
    
    <Navbar bg='dark' data-bs-theme="dark">
     <Container>
-        <Navbar.Brand href='#none'><strong>Not-loggedIn</strong></Navbar.Brand>
+        <Navbar.Brand href='#none'><strong>NotloggedIn</strong></Navbar.Brand>
         <Nav className='m-auto'>
             <Nav.Link as={Link} className='nav-link' to="/login">Login</Nav.Link>
             <Nav.Link as={Link} className='nav-link' to="/register">Signup</Nav.Link>
