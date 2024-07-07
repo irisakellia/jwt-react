@@ -1,10 +1,17 @@
 import React from 'react'
-import {Navbar, container , Nav, Container} from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import {Navbar, Nav, Container} from 'react-bootstrap'
+import { Link, useNavigate } from 'react-router-dom'
 
 const Header = () => {
 
   const token = localStorage.getItem("token");
+  const navigate = useNavigate();
+
+  const handleLogout = () =>{
+    localStorage.removeItem("token");
+navigate("/Login");
+
+  }
   return (
    <>
    
@@ -25,9 +32,16 @@ const Header = () => {
       </Nav.Link>
       </>
     ) :(
-      <Nav.Link>
+      <>
+        <Nav.Link as={Link} to={"/login"} className='nav-link'>
+        Login
         
-      </Nav.Link>
+        </Nav.Link>
+        <Nav.Link as={Link} to={"/register"} className='nav-link'>
+Signup
+        </Nav.Link>
+      </>
+    
     )}
   </Nav>
 </Container>
